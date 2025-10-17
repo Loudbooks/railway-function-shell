@@ -52,7 +52,7 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache-railway-function-shell-${{ matrix.arch }}
           cache-to: type=local,dest=/tmp/.buildx-cache-railway-function-shell-${{ matrix.arch }}-new,mode=max
           tags: |
-            ghcr.io/loudbooks/railway-function-shell:${{ env.hash }}-${{ matrix.arch }}
+            ghcr.io/thesamgordon/railway-function-shell:${{ env.hash }}-${{ matrix.arch }}
 
       - name: Move updated Docker cache
         run: |
@@ -79,6 +79,6 @@ jobs:
       - name: Create and push multi-arch manifest
         run: |
           docker buildx imagetools create \
-            -t ghcr.io/loudbooks/railway-function-shell:latest \
-            ghcr.io/loudbooks/railway-function-shell:${{ needs.build.outputs.commit_hash }}-amd64 \
-            ghcr.io/loudbooks/railway-function-shell:${{ needs.build.outputs.commit_hash }}-arm64
+            -t ghcr.io/thesamgordon/railway-function-shell:latest \
+            ghcr.io/thesamgordon/railway-function-shell:${{ needs.build.outputs.commit_hash }}-amd64 \
+            ghcr.io/thesamgordon/railway-function-shell:${{ needs.build.outputs.commit_hash }}-arm64
